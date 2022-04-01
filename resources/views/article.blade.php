@@ -5,6 +5,10 @@
     <!-- Exemple de code : -->
     <h1>{{ $article->title }}</h1>
 
+    @error('article_id')
+        <div class="alert alert-danger">{{ $message }}</div>
+    @enderror
+
     <p>{{ $article->content }}</p>
 
 

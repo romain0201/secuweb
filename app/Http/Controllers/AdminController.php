@@ -25,7 +25,6 @@ class AdminController extends Controller
         $request->validate([
             'title' => 'required|string|max:255',
             'content' => 'required|string|max:5000',
-            'article_id' => 'required|'
         ]);
         //
 
