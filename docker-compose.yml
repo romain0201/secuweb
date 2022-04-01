@@ -36,15 +36,16 @@ services:
       - "8080:3000"
     volumes:
       - ./public:/home/unsecure/public:ro
-      - ./.docker/local/nginx/nginx.conf/nginx.conf:/etc/nginx/nginx.conf:ro
-
+      - ./.docker/local/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./.docker/local/nginx/access.log:/home/logs/unsecure/access.log
+      - ./.docker/local/nginx/error.log:/home/logs/unsecure/error.log
   apache:
-    container_name: unsecure-apache
-    image: httpd:2.4-alpine
-    depends_on:
-      - php
-    ports:
-      - "9090:5000"
-    volumes:
-      - ./public:/home/unsecure/public:ro
-      - ./.docker/local/apache/apache.conf:/etc/apache2:ro
+      container_name: unsecure-apache
+      image: httpd:2.4-alpine
+      depends_on:
+        - php
+      ports:
+        - "9090:5000"
+      volumes:
+        - ./public:/home/unsecure/public:ro
+        - ./.docker/local/apache/apache.conf:/usr/local/apache2/conf/httpd.conf:ro
